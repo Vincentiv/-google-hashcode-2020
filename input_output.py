@@ -4,9 +4,9 @@ import os
 def parse_in(in_file):
     with open(in_file, 'r') as f:
         lines = f.readlines()
-        max_slices = lines[0].rstrip('\n').split(" ")[0]
-        pizza_types_count = lines[0].rstrip('\n').split(" ")[1]
-        pizza_slices = lines[1].rstrip('\n').split(" ")
+        max_slices = int(lines[0].rstrip('\n').split(" ")[0])
+        pizza_types_count = int(lines[0].rstrip('\n').split(" ")[1])
+        pizza_slices = list(map(int, lines[1].rstrip('\n').split(" ")))
         return max_slices, pizza_types_count, pizza_slices
 
 

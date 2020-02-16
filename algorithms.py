@@ -1,5 +1,6 @@
 def do_sth(max_slices, pizza_types_count, pizza_slices):
-    pizza_ids = [0, 1, 2]
+    max_found, pizza_ids = brute_force(max_slices, pizza_types_count, pizza_slices)
+    print("Max found : ", str(max_found))
     return pizza_ids
 
 
