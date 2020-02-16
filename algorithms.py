@@ -1,5 +1,6 @@
-def do_sth(data):
-    pass
+def do_sth(max_slices, pizza_types_count, pizza_slices):
+    pizza_ids = [0, 1, 2]
+    return pizza_ids
 
 
 def brute_force(m, n, slices):
