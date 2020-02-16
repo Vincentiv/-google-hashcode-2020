@@ -1,4 +1,5 @@
 from algorithms import *
+import os
 
 def parse_in(in_file):
     with open(in_file, 'r') as f:
@@ -9,12 +10,13 @@ def parse_in(in_file):
         return max_slices, pizza_types_count, pizza_slices
 
 
-def write_solution(out_file, line_to_write):
-    with open(out_file, 'a') as f:
-        f.write(line_to_write)
+def write_solution(out_file, pizza_ids=[]):
+    with open(out_file, 'w') as f:
+        f.writelines([str(len(pizza_ids))+"\n", " ".join([str(id) for id in pizza_ids])])
 
 
 if __name__ == "__main__":
-    path = "/home/anais/Downloads/d_quite_big.in"
+    dirname = os.path.dirname(__file__)
+    path = os.path.join(dirname, 'data/a_example.in')
     max_slices, pizza_types_count, pizza_slices = parse_in(path)
     print(dynamic_prog(max_slices, pizza_types_count, pizza_slices))
