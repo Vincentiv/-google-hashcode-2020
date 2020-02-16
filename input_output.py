@@ -4,9 +4,10 @@ def parse_in(in_file):
             print(line)
 
 
-def write_solution(out_file, line_to_write):
-    with open(out_file, 'a') as f:
-        f.write(line_to_write)
+def write_solution(out_file,pizza_ids=[]):
+    with open(out_file, 'w') as f:
+        f.write(len(pizza_ids))
+        f.write(" ".joint(pizza_ids))
 
 
 if __name__ == "__main__":
