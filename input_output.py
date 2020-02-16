@@ -7,7 +7,7 @@ def parse_in(in_file):
 def write_solution(out_file,pizza_ids=[]):
     with open(out_file, 'w') as f:
         f.write(len(pizza_ids))
-        f.write(" ".joint(pizza_ids))
+        f.write(" ".join(pizza_ids))
 
 
 if __name__ == "__main__":
