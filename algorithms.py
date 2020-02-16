@@ -1,21 +1,20 @@
 import numpy as np
-from scipy import sparse
 
 
 def zeros(rows, cols):
-    return sparse.lil_matrix((rows, cols), dtype=int)
+    return np.zeros([rows, cols])
 
 
 def getUsedItems(w, c):
     # item count
-    i = len(c.rows) - 1
-    currentW = len(c.rows[0]) - 1
+    i = len(c) - 1
+    currentW = len(c[0]) - 1
     # set everything to not marked
     marked = []
     for i in range(i + 1):
         marked.append(0)
     while (i >= 0 and currentW >= 0):
-        if (i == 0 and c[i, currentW] > 0) or c[i, currentW] != c[i - 1, currentW]:
+        if (i == 0 and c[i][currentW] > 0) or c[i][currentW] != c[i - 1][currentW]:
             marked[i] = 1
             currentW = currentW - w[i]
         i = i - 1
@@ -32,10 +31,10 @@ def zeroOneKnapsack(v, w, W):
         for j in range(0, W + 1):
             # can we add this item to this?
             if (w[i] > j):
-                c[i, j] = c[i - 1, j]
+                c[i][j] = c[i - 1][j]
             else:
-                c[i, j] = max(c[i - 1, j], v[i] + c[i - 1, j - w[i]])
-    return [c[n - 1, W], getUsedItems(w, c)]
+                c[i][j] = max(c[i - 1][j], v[i] + c[i - 1][j - w[i]])
+    return [c[n - 1][W], getUsedItems(w, c)]
 
 
 def backwards(max_slices, pizza_types_count, pizza_slices):
