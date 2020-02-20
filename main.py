@@ -12,6 +12,8 @@ if __name__ == "__main__":
     for input_file in input_files:
         if (input_file)== ".DS_Store":
             continue
+        #if (input_file) != "d_tough_choices.txt":
+        #        continue
         input_path = os.path.join(dir_name, f'data/{input_file}')
         books_count, libraries_count, days_count, book_scores, libraries = parse_in(input_path)
         solution = do_sth(books_count, libraries_count, days_count, book_scores, libraries)
