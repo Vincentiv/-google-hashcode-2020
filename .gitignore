@@ -2,3 +2,8 @@ results/*.result
 __pycache__/
 *.py[cod]
 *$py.class
+.idea/google-hashcode-2020.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
