@@ -12,18 +12,21 @@ def parse_in(in_file):
         libraries = []
         for i in range(2, len(lines), 2):
             line1 = lines[i].rstrip('\n').split(" ")
-            line2 = lines[i+1].rstrip('\n').split(" ")
+            line2 = lines[i + 1].rstrip('\n').split(" ")
             libraries += [line1[0], line1[1], line1[2], line2]
         return books_count, libraries_count, days_count, book_scores, libraries
 
 
-def write_solution(out_file, pizza_ids=[]):
+def write_solution(out_file, solution):
     with open(out_file, 'w') as f:
-        f.writelines([str(len(pizza_ids))+"\n", " ".join([str(id) for id in pizza_ids])])
+        f.write(f'{str(len(solution))}\n')
+        for library in solution:
+            f.write(f'{library[0]} {len(library[1])}\n')
+            f.write(" ".join([str(book_id) for book_id in library[1]]) + "\n")
 
 
 if __name__ == "__main__":
     dirname = os.path.dirname(__file__)
     path = os.path.join(dirname, 'data/a_example.in')
-    max_slices, pizza_types_count, pizza_slices = parse_in(path)
-    print(dynamic_prog(max_slices, pizza_types_count, pizza_slices))
+    books_count, libraries_count, days_count, book_scores, libraries = parse_in(path)
+    # print(dynamic_prog(max_slices, pizza_types_count, pizza_slices))

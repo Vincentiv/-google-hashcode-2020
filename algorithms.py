@@ -1,3 +1,8 @@
+def do_sth(books_count, libraries_count, days_count, book_scores, libraries):
+    # la liste des libraries sous la forme [[library_id1, [book_id0, book_id1, book_id2]], [library_id2, [book_id3, book_id4]]
+    solution = []
+    return solution
+
 def dynamic_prog(w, nb_elements, w_array):
     matrix = [[0 for x in range(w)] for y in range(nb_elements)]
 
@@ -13,12 +18,6 @@ def dynamic_prog(w, nb_elements, w_array):
                 matrix[i][j] = max(matrix[i-1][j], matrix[i-1][j-w_array[i]] + w_array[i])
 
     return matrix[nb_elements-1][w-1]
-
-def do_sth(max_slices, pizza_types_count, pizza_slices):
-    max_found, pizza_ids = brute_force(max_slices, pizza_types_count, pizza_slices)
-    print("Max found : ", str(max_found))
-    return pizza_ids
-
 
 def brute_force(m, n, slices):
     return types_reccurs(m, 0, n, slices, [], 0)
