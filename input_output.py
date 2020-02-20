@@ -10,7 +10,7 @@ def parse_in(in_file):
         days_count = lines[0].rstrip('\n').split(" ")[2]
         book_scores = lines[1].rstrip('\n').split(" ")
         libraries = []
-        for i in range(3, len(lines), 2):
+        for i in range(2, len(lines), 2):
             line1 = lines[i].rstrip('\n').split(" ")
             line2 = lines[i+1].rstrip('\n').split(" ")
             libraries += [line1[0], line1[1], line1[2], line2]
