@@ -10,6 +10,8 @@ if __name__ == "__main__":
     data_path = os.path.join(dir_name, 'data')
     input_files = [f for f in os.listdir(data_path) if os.path.isfile(os.path.join(data_path, f))]
     for input_file in input_files:
+        if (input_file)== ".DS_Store":
+            continue
         input_path = os.path.join(dir_name, f'data/{input_file}')
         books_count, libraries_count, days_count, book_scores, libraries = parse_in(input_path)
         solution = do_sth(books_count, libraries_count, days_count, book_scores, libraries)
