@@ -1,13 +1,20 @@
 from algorithms import *
 import os
 
+
 def parse_in(in_file):
     with open(in_file, 'r') as f:
         lines = f.readlines()
-        max_slices = int(lines[0].rstrip('\n').split(" ")[0])
-        pizza_types_count = int(lines[0].rstrip('\n').split(" ")[1])
-        pizza_slices = list(map(int, lines[1].rstrip('\n').split(" ")))
-        return max_slices, pizza_types_count, pizza_slices
+        books_count = lines[0].rstrip('\n').split(" ")[0]
+        libraries_count = lines[0].rstrip('\n').split(" ")[1]
+        days_count = lines[0].rstrip('\n').split(" ")[2]
+        book_scores = lines[1].rstrip('\n').split(" ")
+        libraries = []
+        for i in range(3, len(lines), 2):
+            line1 = lines[i].rstrip('\n').split(" ")
+            line2 = lines[i+1].rstrip('\n').split(" ")
+            libraries += [line1[0], line1[1], line1[2], line2]
+        return books_count, libraries_count, days_count, book_scores, libraries
 
 
 def write_solution(out_file, pizza_ids=[]):
