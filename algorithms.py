@@ -22,10 +22,14 @@ def do_sth(books_count, libraries_count, days_count, book_scores, libraries):
     return solution
 
 
-def do_sth_bis(books_count, libraries_count, days_count, book_scores, libraries):
+def do_sth_bis(books_count, libraries_count, days_count, book_scores, libraries_mini):
     libraries_ordered = []
+    libraries = []
+    for library in libraries_mini:
+        library.append(create_one_hot(library[4], books_count))
+        libraries.append(library)
     while len(libraries_ordered) <= libraries_count:
-        libraries_scores = [np.dot(create_one_hot(library[4], books_count), book_scores) for library in libraries]
+        libraries_scores = [np.dot(library[5], book_scores) for library in libraries]
         max_score = libraries_scores[0]
         i_max = 0
         for i, lib_score in enumerate(libraries_scores):
@@ -33,7 +37,7 @@ def do_sth_bis(books_count, libraries_count, days_count, book_scores, libraries)
                 max_score = lib_score
                 i_max = i
         libraries_ordered.append(libraries[i_max])
-        book_scores = new_score(book_scores, create_one_hot(libraries[i_max], book_scores))
+        book_scores = new_score(book_scores, libraries[i_max][5])
     # la liste des libraries sous la forme [[library_id1, [book_id0, book_id1, book_id2]], [library_id2, [book_id3, book_id4]]
     solution = [[library[0], library[4]] for library in libraries_ordered]
     return solution
@@ -41,8 +45,8 @@ def do_sth_bis(books_count, libraries_count, days_count, book_scores, libraries)
 
 def create_one_hot(v, nb_classes):
     targets = np.array(v).reshape(-1)
-    return list(np.sum(np.eye(nb_classes)[targets], axis=0))
+    return list(np.sum(np.eye(nb_classes)[targets], axis=0, dtype=np.int32))
 
 def new_score(scores, one_hot):
-    inverse_one_hot = np.subtract([1]*6,one_hot_targets)
-    return list(np.multiply(l,inverse_one_hot))
+    inverse_one_hot = np.subtract([1]*len(one_hot),one_hot)
+    return list(np.multiply(scores,inverse_one_hot))

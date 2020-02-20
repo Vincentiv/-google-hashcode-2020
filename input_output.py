@@ -4,15 +4,15 @@ import os
 def parse_in(in_file):
     with open(in_file, 'r') as f:
         lines = f.readlines()
-        books_count = lines[0].rstrip('\n').split(" ")[0]
-        libraries_count = lines[0].rstrip('\n').split(" ")[1]
-        days_count = lines[0].rstrip('\n').split(" ")[2]
-        book_scores = lines[1].rstrip('\n').split(" ")
+        books_count = int(lines[0].rstrip('\n').split(" ")[0])
+        libraries_count = int(lines[0].rstrip('\n').split(" ")[1])
+        days_count = int(lines[0].rstrip('\n').split(" ")[2])
+        book_scores = list(map(int,lines[1].rstrip('\n').split(" ")))
         libraries = []
         for i in range(2, len(lines) - 1, 2):
             line1 = lines[i].rstrip('\n').split(" ")
             line2 = lines[i + 1].rstrip('\n').split(" ")
-            libraries += [[i // 2 - 1, line1[0], line1[1], line1[2], line2], ]
+            libraries += [[i // 2 - 1, int(line1[0]), int(line1[1]), int(line1[2]), list(map(int, line2))],]
         return books_count, libraries_count, days_count, book_scores, libraries
 
 
